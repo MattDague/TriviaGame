@@ -1,7 +1,7 @@
 //full list of questions and answers as objects within an array
 var trivia = [
     {
-        question: "What is Erins real first name?",
+        question: "What is Erin's real first name?",
         answers: ["Erin", "Kelly", "Maggie", "Astrid"],
         correct: "Kelly"
 
@@ -22,7 +22,7 @@ var trivia = [
         correct: "Michael Klump"
     },
     {
-        question: "What did Prison Mike go to Jail for?",
+        question: "What did Prison Mike go to jail for?",
         answers: ["Stealing the President's rubies", "Kidnapping the President's son", "Framing the President for murder", "Framed for murder by the President"],
         correct: "Kidnapping the President's son"
     },
@@ -32,12 +32,12 @@ var trivia = [
         correct: "Moisley"
     },
     {
-        question: "What award does Toby win at the last Dundies",
+        question: "What award does Toby win at the last Dundies?",
         answers: ["Extreme Repulsiveness", "Gross Incompetence", "Excedingly Off-Putting", "Worst Dad"],
         correct: "Extreme Repulsiveness"
     },
     {
-        question: "Which of the following is not one of Pam's Desert Island Movies?",
+        question: "Which of the following is not one of Pam's desert island movies?",
         answers: ["Fargo", "The Princess Bride", "Dazed and Confused", "The Goonies"],
         correct: "The Goonies"
     },
@@ -47,7 +47,7 @@ var trivia = [
 var rightAnswers = 0
 var wrongAnswers = 0
 var clockRunning = false
-var time = 5
+var time = 120
 var setInterval
 
 
