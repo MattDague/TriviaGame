@@ -47,7 +47,7 @@ var trivia = [
 var rightAnswers = 0
 var wrongAnswers = 0
 var clockRunning = false
-var time = 120
+var time = 5
 var setInterval
 
 
@@ -88,6 +88,7 @@ function gameStart() {
     var button = "<br><br> <button type='submit' id='submitButton' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
     $("#quiz").append(button)
 
+
 };
 
 function timeStart() {
@@ -101,9 +102,13 @@ function timeStart() {
 function count() {
     time--;
     var converted = timeConverter(time);
-    console.log(converted);
+    console.log(time);
     $("#display").text(converted);
-}
+    
+     if(time == 0) {
+         timeUp ()
+     };
+};
 
 function timeConverter(t) {
 
@@ -125,7 +130,12 @@ function timeConverter(t) {
 }
 
 function timeUp() {
+clockRunning = false;
+clearInterval(interval);
+$("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>")
+var score = Math.ceil((rightAnswers/8) * 100)
+$("#quiz").append("<h3>Your score is: " + score + "%!</h3>") 
 
-    
+
 
 };
