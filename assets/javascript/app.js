@@ -47,7 +47,7 @@ var trivia = [
 var rightAnswers = 0
 var wrongAnswers = 0
 var clockRunning = false
-var time = 8
+var time = 40
 var setInterval
 
 
@@ -76,24 +76,18 @@ function gameStart() {
         console.log(trivia[j].question)
 
         //displays all possible answers for each question
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < trivia[j].answers.length; i++) {
             //variable for applying html to each answer and giving them a name
-            var current = "<br><input type='radio' name='q" + j + "Answer' value='answer" + j + i  + "' id='answer" + j + i + "'> " + trivia[j].answers[i] + "</input>";  
+            var current = "<br><input type='radio' name='q" + j + "Answer' id='answer" + j + i + "'> " + trivia[j].answers[i] + "</input>";  
             $("#quiz").append(current);
 
         };
 
     };
    
-    // console.log($("#ans10").val())
     //creates submit button
     var button = "<br><br> <button type='submit' id='submit' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
     $("#quiz").append(button)
-
-    // if ($("#answer10").not(":checked" )){
-    //     console.log("howdy")
-    // };
-
 
 };
 
@@ -145,22 +139,73 @@ function timeConverter(t) {
 //end of game function
 function timeUp() {
 
-    //beginning of win/loss check
-    if ($("#answer10").is(":checked" )){
-        console.log("howdy")
-    }
-     else {
-         rightAnswers++
-     }
-
-
-
+    answerChecker();
+  
 clockRunning = false;
 clearInterval(interval);
 $("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>")
 var score = Math.ceil((rightAnswers/8) * 100)
 $("#quiz").append("<h3>Your score is: " + score + "%!</h3>") 
 
-
-
 };
+
+//beginning of win/loss check
+
+function answerChecker (){
+// checks question 1
+  if ($("#answer01").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ }; 
+// checks question 2
+ if ($("#answer12").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 3
+ if ($("#answer21").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 4
+ if ($("#answer33").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 5
+ if ($("#answer41").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 6
+ if ($("#answer50").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 7
+ if ($("#answer60").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+ // checks question 8
+ if ($("#answer73").is(":checked" )){
+    rightAnswers++
+}
+ else {
+     wrongAnswers++
+ };
+}
