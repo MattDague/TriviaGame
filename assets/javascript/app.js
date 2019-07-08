@@ -7,7 +7,7 @@ var trivia = [
     },
     {
         question: "What is the name of Michael Scott's book?",
-        answers: ["Threat Level Midnight", "Make Friends First, Sales Second, Love Third", "Somehow I Manage", "I am Beyone, Always"],
+        answers: ["Threat Level Midnight", "Make Friends First, Sales Second, Love Third", "Somehow I Manage", "I am Beyonce, Always"],
         correct: "Somehow I Manage"
     },
     {
@@ -26,7 +26,7 @@ var trivia = [
         correct: "Kidnapping the President's son"
     },
     {
-        question: "Which of the following is not real a Shrute family member?",
+        question: "Which of the following is not real a Schrute family member?",
         answers: ["Moisley", "Zeke", "Eldred", "Honk"],
         correct: "Moisley"
     },
@@ -43,18 +43,23 @@ var trivia = [
 
 ]
 
+var rightAnswers = 0
+var wrongAnswers = 0
+
 //start button functionality
 $("#startButton").on("click", function () {
 
     //hide start button
     $("#startButton").css("display", "none")
+    // $("#quiz").html("<form")
 
-    //in progress -display all questions
+    //display all questions
 
-    for (var j = 0; trivia.length; j++) {
+    for (var j = 0; j < trivia.length; j++) {
         var addBreak = "<br><br>"
         $("#quiz").append(addBreak)
         $("#quiz").append(trivia[j].question)
+        console.log(trivia[j].question)
         
 
         for (var i = 0; i < 4; i++) {
@@ -65,7 +70,10 @@ $("#startButton").on("click", function () {
         };
 
         
-    }
+    };
+    var button = "<br><br> <button type='submit' id='submitButton' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
+    $("#quiz").append(button)
+    
 
 
     //working display for 1st question
