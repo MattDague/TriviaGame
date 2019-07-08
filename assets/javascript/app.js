@@ -3,8 +3,8 @@ var trivia = [
     {
         question: "What is Erin's real first name?",
         answers: ["Erin", "Kelly", "Maggie", "Astrid"],
+        // The "correct" part of the object ended up not being used but I left it for clarity on what the correct answer is
         correct: "Kelly"
-
     },
     {
         question: "What is the name of Michael Scott's book?",
@@ -47,7 +47,7 @@ var trivia = [
 var rightAnswers = 0
 var wrongAnswers = 0
 var clockRunning = false
-var time = 40
+var time = 120
 var setInterval
 
 
@@ -78,17 +78,19 @@ function gameStart() {
         //displays all possible answers for each question
         for (var i = 0; i < trivia[j].answers.length; i++) {
             //variable for applying html to each answer and giving them a name
-            var current = "<br><input type='radio' name='q" + j + "Answer' id='answer" + j + i + "'> " + trivia[j].answers[i] + "</input>";  
+            var current = "<br><input type='radio' name='q" + j + "Answer' id='answer" + j + i + "'> " + trivia[j].answers[i] + "</input>";
             $("#quiz").append(current);
 
         };
 
     };
-   
-    //creates submit button
-    var button = "<br><br> <button type='submit' id='submit' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
-    $("#quiz").append(button)
 
+    //creates submit button
+    var button = "<br><br> <button type='submit' id='endButton' class='btn btn-primary btn-lg btn-dark'>Submit</button>";
+    $("#quiz").append(button);
+    $("#endButton").on("click", function () {
+        endGame()
+    });
 };
 
 //starts countdown
@@ -105,9 +107,9 @@ function count() {
     var converted = timeConverter(time);
     console.log(time);
     $("#display").text(converted);
-     if(time == 0) {
-         timeUp ()
-     };
+    if (time == 0) {
+        endGame()
+    };
 };
 
 //converter for minutes to seconds
@@ -128,84 +130,77 @@ function timeConverter(t) {
     }
 
     return minutes + ":" + seconds;
-}
-
-//function for testing correct answers
-
-
-
-
+};
 
 //end of game function
-function timeUp() {
+function endGame() {
 
     answerChecker();
-  
-clockRunning = false;
-clearInterval(interval);
-$("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>")
-var score = Math.ceil((rightAnswers/8) * 100)
-$("#quiz").append("<h3>Your score is: " + score + "%!</h3>") 
+    clockRunning = false;
+    clearInterval(interval);
+    $("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>");
+    var score = Math.ceil((rightAnswers / 8) * 100);
+    $("#quiz").append("<h3>Your score is: " + score + "%!</h3>");
 
 };
 
-//beginning of win/loss check
+//win/loss check
 
-function answerChecker (){
-// checks question 1
-  if ($("#answer01").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- }; 
-// checks question 2
- if ($("#answer12").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 3
- if ($("#answer21").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 4
- if ($("#answer33").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 5
- if ($("#answer41").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 6
- if ($("#answer50").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 7
- if ($("#answer60").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
- // checks question 8
- if ($("#answer73").is(":checked" )){
-    rightAnswers++
-}
- else {
-     wrongAnswers++
- };
-}
+function answerChecker() {
+    // checks question 1
+    if ($("#answer01").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 2
+    if ($("#answer12").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 3
+    if ($("#answer21").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 4
+    if ($("#answer33").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 5
+    if ($("#answer41").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 6
+    if ($("#answer50").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 7
+    if ($("#answer60").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+    // checks question 8
+    if ($("#answer73").is(":checked")) {
+        rightAnswers++
+    }
+    else {
+        wrongAnswers++
+    };
+};
