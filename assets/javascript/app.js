@@ -47,7 +47,7 @@ var trivia = [
 var rightAnswers = 0
 var wrongAnswers = 0
 var clockRunning = false
-var time = 120
+var time = 8
 var setInterval
 
 
@@ -56,7 +56,6 @@ $("#startButton").on("click", function () {
 
     //hide start button
     $("#startButton").css("display", "none")
-    // $("#quiz").html("<form")
 
     //clicking this button calls gamestart function
     gameStart();
@@ -65,7 +64,7 @@ $("#startButton").on("click", function () {
 
 //begin game
 function gameStart() {
-
+    //starting display for countdown timer
     $("#display").text("02:00");
     timeStart();
 
@@ -73,24 +72,32 @@ function gameStart() {
     for (var j = 0; j < trivia.length; j++) {
         var addBreak = "<br><br>"
         $("#quiz").append(addBreak)
-        $("#quiz").append(trivia[j].question)
+        $("#quiz").append("<h6>" + trivia[j].question + "</h5>")
         console.log(trivia[j].question)
 
         //displays all possible answers for each question
         for (var i = 0; i < 4; i++) {
             //variable for applying html to each answer and giving them a name
-            var current = "<br><input type='radio' name='q" + j + "Answer'> " + trivia[j].answers[i] + "</input>";
+            var current = "<br><input type='radio' name='q" + j + "Answer' value='answer" + j + i  + "' id='answer" + j + i + "'> " + trivia[j].answers[i] + "</input>";  
             $("#quiz").append(current);
 
         };
 
     };
-    var button = "<br><br> <button type='submit' id='submitButton' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
+   
+    // console.log($("#ans10").val())
+    //creates submit button
+    var button = "<br><br> <button type='submit' id='submit' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
     $("#quiz").append(button)
+
+    // if ($("#answer10").not(":checked" )){
+    //     console.log("howdy")
+    // };
 
 
 };
 
+//starts countdown
 function timeStart() {
     if (clockRunning == false) {
         interval = setInterval(count, 1000);
@@ -98,18 +105,18 @@ function timeStart() {
     }
 
 };
-
+// countdown function 
 function count() {
     time--;
     var converted = timeConverter(time);
     console.log(time);
     $("#display").text(converted);
-    
      if(time == 0) {
          timeUp ()
      };
 };
 
+//converter for minutes to seconds
 function timeConverter(t) {
 
     var minutes = Math.floor(t / 60);
@@ -129,7 +136,25 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
 }
 
+//function for testing correct answers
+
+
+
+
+
+//end of game function
 function timeUp() {
+
+    //beginning of win/loss check
+    if ($("#answer10").is(":checked" )){
+        console.log("howdy")
+    }
+     else {
+         rightAnswers++
+     }
+
+
+
 clockRunning = false;
 clearInterval(interval);
 $("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>")
