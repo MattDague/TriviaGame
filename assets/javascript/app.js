@@ -1,3 +1,4 @@
+//full list of questions and answers as objects within an array
 var trivia = [
     {
         question: "What is Erins real first name?",
@@ -42,9 +43,13 @@ var trivia = [
     },
 
 ]
-
+//variables for correct answers at end
 var rightAnswers = 0
 var wrongAnswers = 0
+var clockRunning = false
+var time = 120
+var setInterval
+
 
 //start button functionality
 $("#startButton").on("click", function () {
@@ -53,37 +58,74 @@ $("#startButton").on("click", function () {
     $("#startButton").css("display", "none")
     // $("#quiz").html("<form")
 
-    //display all questions
+    //clicking this button calls gamestart function
+    gameStart();
 
+});
+
+//begin game
+function gameStart() {
+
+    $("#display").text("02:00");
+    timeStart();
+
+    //display all questions
     for (var j = 0; j < trivia.length; j++) {
         var addBreak = "<br><br>"
         $("#quiz").append(addBreak)
         $("#quiz").append(trivia[j].question)
         console.log(trivia[j].question)
-        
 
+        //displays all possible answers for each question
         for (var i = 0; i < 4; i++) {
             //variable for applying html to each answer and giving them a name
             var current = "<br><input type='radio' name='q" + j + "Answer'> " + trivia[j].answers[i] + "</input>";
             $("#quiz").append(current);
-    
+
         };
 
-        
     };
     var button = "<br><br> <button type='submit' id='submitButton' class='btn btn-primary btn-lg btn-dark'>Submit</button>"
     $("#quiz").append(button)
+
+};
+
+function timeStart() {
+    if (clockRunning == false) {
+        interval = setInterval(count, 1000);
+        clockRunning = true;
+    }
+
+};
+
+function count() {
+    time--;
+    var converted = timeConverter(time);
+    console.log(converted);
+    $("#display").text(converted);
+}
+
+function timeConverter(t) {
+
+    var minutes = Math.floor(t / 60);
+    var seconds = t - (minutes * 60);
+
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    if (minutes === 0) {
+        minutes = "00";
+    }
+    else if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    return minutes + ":" + seconds;
+}
+
+function timeUp() {
+
     
 
-
-    //working display for 1st question
-    // $("#quiz").append(trivia[0].question);
-
-    // for (var i = 0; i < 4; i++) {
-    //     var current = "<br><input type='radio' name='q1Answer'> " + trivia[0].answers[i] + "</input>";
-    //     $("#quiz").append(current);
-
-    // };
-});
-
-
+};
