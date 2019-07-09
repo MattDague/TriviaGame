@@ -49,6 +49,7 @@ var wrongAnswers = 0
 var clockRunning = false
 var time = 120
 var setInterval
+var interval
 
 
 //start button functionality
@@ -65,8 +66,12 @@ $("#startButton").on("click", function () {
 //begin game
 function gameStart() {
     //starting display for countdown timer
+    clearInterval(interval);
     $("#display").text("02:00");
+    time = 120
     timeStart();
+    
+   
 
     //display all questions
     for (var j = 0; j < trivia.length; j++) {
@@ -95,6 +100,7 @@ function gameStart() {
 
 //starts countdown
 function timeStart() {
+    
     if (clockRunning == false) {
         interval = setInterval(count, 1000);
         clockRunning = true;
@@ -134,16 +140,31 @@ function timeConverter(t) {
 
 //end of game function
 function endGame() {
-
+    
     answerChecker();
     clockRunning = false;
     clearInterval(interval);
+    $("#display").hide();
     $("#quiz").html("<h5>Right answers: " + rightAnswers + " </h5><br><h5>Wrong answers: " + wrongAnswers + "</h5><br>");
     var score = Math.ceil((rightAnswers / 8) * 100);
     $("#quiz").append("<h3>Your score is: " + score + "%!</h3>");
 
+    var button = "<br><br> <button type='submit' id='restartButton' class='btn btn-primary btn-lg btn-dark'>Play Again?</button>";
+    $("#quiz").append(button);
+    $("#restartButton").on("click", function () {
+        restart();
+    });
+
 };
 
+function restart() {
+    $("#quiz").html("");
+
+    $("#display").show();
+    $("#display").text("02:00");
+    gameStart()
+
+}
 //win/loss check
 
 function answerChecker() {
