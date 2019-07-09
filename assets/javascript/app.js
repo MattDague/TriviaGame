@@ -230,7 +230,7 @@ function answerChecker() {
     if ($("#answer60").is(":checked")) {
         rightAnswers++
     }
-    else if (($("#answer60").is(":checked")) || ($("#answer62").is(":checked")) || ($("#answer63").is(":checked"))) {
+    else if (($("#answer61").is(":checked")) || ($("#answer62").is(":checked")) || ($("#answer63").is(":checked"))) {
         wrongAnswers++
     };
     // checks question 8
